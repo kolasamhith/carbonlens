@@ -1,40 +1,29 @@
-# Bayesian Fusion Engine
-# Combines energy and material attributions, runs Monte Carlo for confidence intervals
-# Constrains outputs to factory totals
-
 import numpy as np
-from core.emission_factors.factor_db import get_grid_emission_factor, get_material_emission_factor
+from core.emission_factors.factor_db import get_grid_ef, get_material_ef
 
 N_SAMPLES = 1000
-SEC_UNCERTAINTY = 0.15  # ±15% standard deviation on SEC benchmarks
+SEC_UNCERTAINTY = 0.15
 
 def compute_carbon_estimates(
     energy_results: list[dict],
     material_results: list[dict],
     total_kwh: float,
-    grid_zone: str = "IN_NATIONAL"
+    grid_zone: str = "india_national"
 ) -> list[dict]:
-    """
-    Fuses energy and material attributions using Bayesian Monte Carlo.
-    
-    Returns per-product CO2e with confidence intervals.
-    """
-    grid_ef = get_grid_emission_factor(grid_zone)
+    grid_ef = get_grid_ef(grid_zone)
     
     outputs = []
     
-    # Build a lookup from product_id to material result
-    mat_lookup = {r["id"]: r for r in material_results}
+    mat_lookup = {r.get("id", str(i)): r for i, r in enumerate(material_results)}
     
-    for e_result in energy_results:
-        product_id = e_result["id"]
+    for i, e_result in enumerate(energy_results):
+        product_id = e_result.get("id", str(i))
         m_result = mat_lookup.get(product_id, {})
         
         material_type = e_result.get("material", "mild_steel")
-        is_scrap = e_result.get("assumed_scrap_based", True)
-        mat_ef = get_material_emission_factor(material_type, scrap_based=is_scrap)
+        # is_scrap = e_result.get("assumed_scrap_based", True)
+        mat_ef = get_material_ef(material_type)
         
-        # Monte Carlo sampling
         sec_mean = e_result["sec_benchmark"]["typical"]
         sec_std = sec_mean * SEC_UNCERTAINTY
         
@@ -43,14 +32,11 @@ def compute_carbon_estimates(
             sec_sample = np.random.normal(sec_mean, sec_std)
             sec_sample = max(sec_sample, e_result["sec_benchmark"]["min"])
             
-            # Recalculate energy per unit with sampled SEC
             tonnes_per_unit = e_result["unit_weight_kg"] / 1000
             energy_per_unit = sec_sample * tonnes_per_unit
             
-            # CO2e from energy
             co2e_energy = energy_per_unit * grid_ef
             
-            # CO2e from material
             mat_input = m_result.get("material_input_per_unit_kg", e_result["unit_weight_kg"])
             co2e_material = mat_input * mat_ef
             
@@ -85,20 +71,14 @@ def compute_carbon_estimates(
     
     return outputs
 
-
 def _compute_confidence(energy_result: dict, material_result: dict) -> float:
-    """
-    Heuristic confidence score based on data completeness.
-    """
     score = 100.0
     
-    # Penalize if SEC range is wide
     sec = energy_result.get("sec_benchmark", {})
     if sec:
         range_pct = (sec.get("max", 0) - sec.get("min", 0)) / sec.get("typical", 1)
         score -= range_pct * 20
     
-    # Penalize if material scale factor deviates significantly from 1.0
     scale = material_result.get("material_scale_factor", 1.0)
     score -= abs(1.0 - scale) * 30
     
