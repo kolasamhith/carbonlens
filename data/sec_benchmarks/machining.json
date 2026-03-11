@@ -1,0 +1,123 @@
+{
+  "_source": "Bureau of Energy Efficiency (BEE) India — SME Cluster Energy Benchmarks",
+  "_references": [
+    "BEE-SME Programme: Nagaur Hand Tools cluster, Jalandhar Hand Tools cluster (BEE-GEF-UNIDO)",
+    "BEE-SME Programme: SPM (Special Purpose Machines) — turning/drilling installed at Ludhiana forging units",
+    "BEE-GEF-WB Programme: Bangalore Machine Tools cluster (Annexure-1)",
+    "UNIDO Industrial Energy Efficiency — Machining and Metal Cutting benchmarks",
+    "BEE National Programme on EE in SMEs: 375 DPRs including machining sector clusters"
+  ],
+  "_updated": "2024",
+  "_units": "kWh per tonne of finished product",
+  "_notes": "Machining SEC varies enormously by material removal rate and part complexity. These benchmarks represent typical MSME cluster operations (batch production, general-purpose or special-purpose machines). SPM (Special Purpose Machines) installed at Ludhiana forging units showed 20-40% energy savings vs conventional. Nagaur and Jalandhar hand tools clusters covered under BEE-GEF-UNIDO programme.",
+  "process": "machining",
+  "benchmarks": {
+    "mild_steel_turning": {
+      "min": 200,
+      "typical": 380,
+      "max": 650,
+      "yield_coefficient": 0.75,
+      "notes": "CNC/SPM turning of mild steel shafts, sleeves, bushings. SPM installed at Ludhiana forging cluster (BEE-SME). Yield loss from swarf/chips typically 20-30%."
+    },
+    "mild_steel_milling": {
+      "min": 250,
+      "typical": 430,
+      "max": 720,
+      "yield_coefficient": 0.72,
+      "notes": "Face milling, slot milling on steel components. Higher SEC than turning due to interrupted cut."
+    },
+    "mild_steel_grinding": {
+      "min": 300,
+      "typical": 500,
+      "max": 850,
+      "yield_coefficient": 0.88,
+      "notes": "Surface and cylindrical grinding. High specific energy (material removal is small per pass). Low material loss but high energy per kg removed."
+    },
+    "mild_steel_drilling": {
+      "min": 150,
+      "typical": 280,
+      "max": 480,
+      "yield_coefficient": 0.90,
+      "notes": "Drilling and boring operations. SPM-drilling installed at Bharat International, Ludhiana (BEE-SME case study). Low material loss."
+    },
+    "alloy_steel_turning": {
+      "min": 280,
+      "typical": 480,
+      "max": 800,
+      "yield_coefficient": 0.74,
+      "notes": "Higher cutting forces and tool wear for alloy grades. More passes required, increasing SEC."
+    },
+    "alloy_steel_milling": {
+      "min": 320,
+      "typical": 540,
+      "max": 900,
+      "yield_coefficient": 0.71,
+      "notes": "Difficult-to-machine alloy steels require slower feeds, more coolant, higher energy."
+    },
+    "stainless_steel_turning": {
+      "min": 350,
+      "typical": 600,
+      "max": 1000,
+      "yield_coefficient": 0.73,
+      "notes": "Work hardening tendency of stainless increases cutting energy significantly. Tool changes increase downtime and indirect energy."
+    },
+    "aluminium_turning": {
+      "min": 80,
+      "typical": 160,
+      "max": 280,
+      "yield_coefficient": 0.78,
+      "notes": "Aluminium machines at 3-5x higher speeds than steel. Very low SEC. Common in auto component clusters."
+    },
+    "aluminium_milling": {
+      "min": 90,
+      "typical": 180,
+      "max": 300,
+      "yield_coefficient": 0.75,
+      "notes": "High-speed milling of aluminium components. Low cutting forces and power consumption."
+    },
+    "cast_iron_turning": {
+      "min": 220,
+      "typical": 400,
+      "max": 680,
+      "yield_coefficient": 0.76,
+      "notes": "Dry machining common for grey cast iron (no coolant needed). Moderate SEC. Common in foundry-machining integrated MSME units (Coimbatore, Rajkot)."
+    },
+    "cast_iron_milling": {
+      "min": 260,
+      "typical": 450,
+      "max": 740,
+      "yield_coefficient": 0.73,
+      "notes": "Face milling of cast iron housings, blocks. Higher SEC than turning due to chip formation energy."
+    },
+    "brass_turning": {
+      "min": 60,
+      "typical": 130,
+      "max": 240,
+      "yield_coefficient": 0.80,
+      "notes": "Brass is free-cutting — very low SEC. Jamnagar brass cluster produces precision turned parts. Chips have high scrap value."
+    }
+  },
+  "emission_factors": {
+    "_source": "IPCC AR5 / World Steel Association / International Aluminium Institute",
+    "_units": "kgCO2e per kg of material",
+    "mild_steel_primary_kg_co2e_per_kg": 1.85,
+    "mild_steel_scrap_kg_co2e_per_kg": 0.43,
+    "alloy_steel_primary_kg_co2e_per_kg": 2.20,
+    "stainless_steel_primary_kg_co2e_per_kg": 3.10,
+    "grey_iron_primary_kg_co2e_per_kg": 1.51,
+    "grey_iron_scrap_kg_co2e_per_kg": 0.43,
+    "aluminium_primary_kg_co2e_per_kg": 8.24,
+    "aluminium_secondary_kg_co2e_per_kg": 0.60,
+    "brass_primary_kg_co2e_per_kg": 3.20,
+    "brass_secondary_kg_co2e_per_kg": 0.85
+  },
+  "grid_emission_factor": {
+    "_source": "CEA CO2 Baseline Database for Indian Power Sector, Version 18 (2023-24)",
+    "_units": "kgCO2e per kWh",
+    "india_national_grid": 0.716,
+    "western_region": 0.740,
+    "northern_region": 0.700,
+    "southern_region": 0.680,
+    "eastern_region": 0.780
+  }
+}

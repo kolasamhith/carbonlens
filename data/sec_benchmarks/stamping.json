@@ -1,23 +1,83 @@
 {
   "_source": "Bureau of Energy Efficiency (BEE) India — SME Cluster Energy Benchmarks",
+  "_references": [
+    "BEE-SME Programme: Ludhiana Forging cluster includes sheet metal stamping units",
+    "BEE-GEF-WB Programme: Pune cluster (mixed industries) includes press shop operations",
+    "UNIDO Industrial Energy Efficiency — Sheet Metal Forming benchmarks",
+    "European Commission BREF document: Smitheries and Foundries (2005) — stamping SEC ranges"
+  ],
   "_updated": "2024",
   "_units": "kWh per tonne of finished product",
+  "_notes": "Stamping is predominantly electrical (press motors, hydraulics, air compressors). SEC is low for cold processes but yield loss is high (blanking scrap 20-35%). Hot stamping approaches forging SEC due to heating requirement.",
   "process": "stamping",
   "benchmarks": {
-    "cold_stamping_steel": {
-      "min": 50, "typical": 100, "max": 150,
+    "cold_stamping_mild_steel": {
+      "min": 45,
+      "typical": 95,
+      "max": 160,
       "yield_coefficient": 0.72,
-      "notes": "Cold process, lower energy but high scrap from blanking"
+      "notes": "Cold progressive stamping. Low SEC (press + compressor only) but low yield — 25-30% blank scrap typical. Common in auto component MSMEs (Pune, Faridabad clusters)."
+    },
+    "cold_stamping_alloy_steel": {
+      "min": 60,
+      "typical": 115,
+      "max": 180,
+      "yield_coefficient": 0.70,
+      "notes": "Higher press tonnage required for alloy grades. Slightly lower yield due to springback and trimming."
     },
     "hot_stamping_steel": {
-      "min": 400, "typical": 550, "max": 700,
+      "min": 380,
+      "typical": 540,
+      "max": 720,
       "yield_coefficient": 0.78,
-      "notes": "Hot stamping for high-strength parts"
+      "notes": "Press hardening / hot stamping for AHSS/boron steel. Heating to 900-950 deg C required. Energy profile similar to forging."
     },
     "cold_stamping_aluminium": {
-      "min": 40, "typical": 80, "max": 120,
+      "min": 38,
+      "typical": 78,
+      "max": 130,
       "yield_coefficient": 0.75,
-      "notes": "Aluminium sheet stamping"
+      "notes": "Aluminium sheet stamping — lower press forces than steel. Good for automotive body panels."
+    },
+    "cold_stamping_stainless_steel": {
+      "min": 70,
+      "typical": 130,
+      "max": 200,
+      "yield_coefficient": 0.68,
+      "notes": "Higher work hardening rate requires more press energy and tool maintenance. Lower yield due to trimming."
+    },
+    "deep_drawing_steel": {
+      "min": 80,
+      "typical": 140,
+      "max": 220,
+      "yield_coefficient": 0.65,
+      "notes": "Deep drawing (cups, cylinders) — multiple pass operation increases SEC. Lower yield due to blankholder waste."
+    },
+    "deep_drawing_aluminium": {
+      "min": 55,
+      "typical": 100,
+      "max": 160,
+      "yield_coefficient": 0.68,
+      "notes": "Aluminium deep drawing — beverage cans, auto parts. Relatively low SEC."
     }
+  },
+  "emission_factors": {
+    "_source": "IPCC AR5 / World Steel Association / International Aluminium Institute",
+    "_units": "kgCO2e per kg of material",
+    "mild_steel_primary_kg_co2e_per_kg": 1.85,
+    "mild_steel_scrap_kg_co2e_per_kg": 0.43,
+    "alloy_steel_primary_kg_co2e_per_kg": 2.20,
+    "stainless_steel_primary_kg_co2e_per_kg": 3.10,
+    "aluminium_primary_kg_co2e_per_kg": 8.24,
+    "aluminium_secondary_kg_co2e_per_kg": 0.60
+  },
+  "grid_emission_factor": {
+    "_source": "CEA CO2 Baseline Database for Indian Power Sector, Version 18 (2023-24)",
+    "_units": "kgCO2e per kWh",
+    "india_national_grid": 0.716,
+    "western_region": 0.740,
+    "northern_region": 0.700,
+    "southern_region": 0.680,
+    "eastern_region": 0.780
   }
 }

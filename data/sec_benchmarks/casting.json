@@ -1,33 +1,95 @@
 {
   "_source": "Bureau of Energy Efficiency (BEE) India — SME Cluster Energy Benchmarks",
+  "_references": [
+    "BEE-GEF-UNIDO Project: Foundry clusters — Belgaum, Coimbatore, Indore (12 SME clusters)",
+    "BEE-SME Programme Annexure-1: Rajkot = Foundry, Batala/Jalandhar/Ludhiana = Foundry",
+    "UNIDO EnView Cloud Analytics for Foundries — Furnace SEC: 0.601 GCal/tonne, GTG SEC: 0.624 GCal/tonne",
+    "BEE Impact Report 2021-22: MSME Sector, GEF-UNIDO programme achievements",
+    "International Energy Agency / IPCC — Foundry energy benchmarks"
+  ],
   "_updated": "2024",
-  "_units": "kWh per tonne of finished product",
+  "_units": "kWh per tonne of finished casting",
+  "_notes": "UNIDO EnView dashboard for foundries shows Furnace SEC ~0.601 GCal/tonne = ~699 kWh/tonne and GTG SEC ~0.624 GCal/tonne = ~726 kWh/tonne for grey iron. Coimbatore foundry cluster: 500+ units, benchmarked under GEF-UNIDO. Belgaum cluster used biomass gasifier for sand drying as pilot.",
   "process": "casting",
   "benchmarks": {
     "grey_iron": {
-      "min": 500, "typical": 650, "max": 800,
+      "min": 480,
+      "typical": 650,
+      "max": 900,
       "yield_coefficient": 0.70,
-      "notes": "Sand casting, cupola or induction furnace"
+      "notes": "Sand casting with cupola or induction furnace. UNIDO EnView dashboard reports ~699 kWh/tonne for Coimbatore/Belgaum clusters. Yield 65-75% typical for sand casting including gating/risering losses.",
+      "source_datapoint": "UNIDO EnView: Furnace SEC 0.601 GCal/tonne = 699 kWh/tonne (Belgaum foundry cluster)"
     },
     "ductile_iron": {
-      "min": 600, "typical": 750, "max": 900,
+      "min": 580,
+      "typical": 760,
+      "max": 1000,
       "yield_coefficient": 0.68,
-      "notes": "Magnesium treatment adds process energy"
+      "notes": "Magnesium treatment adds process energy and heat loss. Lower yield than grey iron due to treatment losses."
+    },
+    "grey_iron_cupola": {
+      "min": 600,
+      "typical": 780,
+      "max": 1100,
+      "yield_coefficient": 0.68,
+      "notes": "Traditional cupola furnace — less efficient than induction. Common in Rajkot, Coimbatore MSME foundries. Higher SEC due to coke combustion inefficiencies."
     },
     "aluminium_die": {
-      "min": 400, "typical": 550, "max": 700,
+      "min": 380,
+      "typical": 520,
+      "max": 700,
       "yield_coefficient": 0.85,
-      "notes": "Die casting, high pressure"
+      "notes": "High pressure die casting. Good yield due to precision tooling. Lower SEC due to aluminium melting point ~660 deg C."
     },
     "aluminium_sand": {
-      "min": 450, "typical": 600, "max": 750,
+      "min": 430,
+      "typical": 580,
+      "max": 760,
       "yield_coefficient": 0.75,
-      "notes": "Sand casting, lower yield than die"
+      "notes": "Gravity sand casting. Lower yield than die casting due to gating system losses."
+    },
+    "aluminium_gravity": {
+      "min": 400,
+      "typical": 550,
+      "max": 720,
+      "yield_coefficient": 0.78,
+      "notes": "Gravity die (permanent mould) casting — intermediate between sand and HPDC."
     },
     "brass": {
-      "min": 350, "typical": 480, "max": 600,
+      "min": 320,
+      "typical": 460,
+      "max": 620,
       "yield_coefficient": 0.82,
-      "notes": "Lower melting temperature"
+      "notes": "Jamnagar brass cluster benchmark (BEE-GEF-UNIDO). Lower melting temperature ~900 deg C. High recycled content typical in Indian MSME context."
+    },
+    "zinc_alloy": {
+      "min": 200,
+      "typical": 320,
+      "max": 450,
+      "yield_coefficient": 0.88,
+      "notes": "Zinc die casting — very low melting point ~420 deg C. Most energy-efficient casting process."
     }
+  },
+  "emission_factors": {
+    "_source": "IPCC AR5 / World Steel Association / International Aluminium Institute / IZA",
+    "_units": "kgCO2e per kg of material",
+    "grey_iron_primary_kg_co2e_per_kg": 1.51,
+    "grey_iron_scrap_kg_co2e_per_kg": 0.43,
+    "ductile_iron_primary_kg_co2e_per_kg": 1.72,
+    "aluminium_primary_kg_co2e_per_kg": 8.24,
+    "aluminium_secondary_kg_co2e_per_kg": 0.60,
+    "brass_primary_kg_co2e_per_kg": 3.20,
+    "brass_secondary_kg_co2e_per_kg": 0.85,
+    "zinc_alloy_primary_kg_co2e_per_kg": 3.86,
+    "zinc_alloy_secondary_kg_co2e_per_kg": 0.65
+  },
+  "grid_emission_factor": {
+    "_source": "CEA CO2 Baseline Database for Indian Power Sector, Version 18 (2023-24)",
+    "_units": "kgCO2e per kWh",
+    "india_national_grid": 0.716,
+    "western_region": 0.740,
+    "northern_region": 0.700,
+    "southern_region": 0.680,
+    "eastern_region": 0.780
   }
 }

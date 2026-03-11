@@ -1,35 +1,71 @@
 {
   "_source": "Bureau of Energy Efficiency (BEE) India — SME Cluster Energy Benchmarks",
+  "_references": [
+    "BEE-SIDBI WB-GEF Case Study: Pune Forging Cluster, M/s P5 unit (532 tpa, 63 toe baseline)",
+    "BEE-SME Programme: Ludhiana Forging Cluster — energy savings 20-40% post induction heater",
+    "BEE Impact Report 2021-22, Chapter 3: MSME Sector benchmarks",
+    "UNIDO Foundry Best Practice Guide — SEC ranges for hot forging"
+  ],
   "_updated": "2024",
   "_units": "kWh per tonne of finished product",
+  "_notes": "Pune case study unit baseline: ~1375 kWh/tonne (FO-fired, <8% furnace efficiency). Post-induction retrofit: ~700 kWh/tonne. Ludhiana cluster verified 20-40% savings over baseline.",
   "process": "forging",
   "benchmarks": {
     "mild_steel": {
-      "min": 600, "typical": 750, "max": 900,
+      "min": 600,
+      "typical": 720,
+      "max": 1400,
       "yield_coefficient": 0.85,
-      "notes": "Hot forging, induction heating assumed"
+      "notes": "Hot forging with induction heating. Typical verified against Pune cluster BEE-SIDBI case study. Max = FO-fired box furnace <8% efficiency (Pune baseline 1375 kWh/tonne).",
+      "source_datapoint": "Pune M/s P5: 63 toe / 532 tpa = 1375 kWh/tonne baseline; post-induction ~700 kWh/tonne"
     },
     "alloy_steel": {
-      "min": 800, "typical": 950, "max": 1100,
+      "min": 800,
+      "typical": 980,
+      "max": 1600,
       "yield_coefficient": 0.82,
-      "notes": "Higher energy for alloy grades due to hardness"
+      "notes": "Higher SEC due to hardness and controlled heating cycles. Alloy grades need tighter temperature windows."
     },
     "stainless_steel": {
-      "min": 900, "typical": 1050, "max": 1250,
+      "min": 900,
+      "typical": 1100,
+      "max": 1800,
       "yield_coefficient": 0.80,
-      "notes": "Stainless requires controlled heating"
+      "notes": "Requires controlled atmosphere and precise temperature 1100-1250 deg C range."
     },
     "aluminium": {
-      "min": 300, "typical": 420, "max": 550,
+      "min": 280,
+      "typical": 420,
+      "max": 600,
       "yield_coefficient": 0.88,
-      "notes": "Lower melting point, less energy intensive"
+      "notes": "Forging at 380-500 deg C. Significantly lower SEC than steel."
+    },
+    "aluminium_alloy": {
+      "min": 300,
+      "typical": 460,
+      "max": 650,
+      "yield_coefficient": 0.86,
+      "notes": "Alloys (6061, 7075) — slightly higher SEC than pure aluminium due to tighter temperature tolerance."
     }
   },
   "emission_factors": {
+    "_source": "IPCC AR5 / World Steel Association / International Aluminium Institute",
+    "_units": "kgCO2e per kg of material",
     "mild_steel_primary_kg_co2e_per_kg": 1.85,
     "mild_steel_scrap_kg_co2e_per_kg": 0.43,
     "alloy_steel_primary_kg_co2e_per_kg": 2.20,
+    "stainless_steel_primary_kg_co2e_per_kg": 3.10,
     "aluminium_primary_kg_co2e_per_kg": 8.24,
-    "aluminium_secondary_kg_co2e_per_kg": 0.60
+    "aluminium_secondary_kg_co2e_per_kg": 0.60,
+    "aluminium_alloy_primary_kg_co2e_per_kg": 8.50
+  },
+  "grid_emission_factor": {
+    "_source": "CEA CO2 Baseline Database for Indian Power Sector, Version 18 (2023-24)",
+    "_units": "kgCO2e per kWh",
+    "india_national_grid": 0.716,
+    "western_region": 0.740,
+    "northern_region": 0.700,
+    "southern_region": 0.680,
+    "eastern_region": 0.780
   }
 }
